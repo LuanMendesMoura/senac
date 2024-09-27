@@ -43,6 +43,7 @@ p {
 
 .card-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     grid-gap: 10px;
 }
@@ -56,4 +57,16 @@ p {
 
 .card ul li {
     margin-bottom: 6px;
+}
+
+a:-webkit-any-link {
+    color: unset;
+}
+
+.redes-sociais {
+    display: flex;
+    justify-content: center;
+    grid-gap: 10px;
+    font-size: 36px; 
+    padding-top: 10px;
 }
