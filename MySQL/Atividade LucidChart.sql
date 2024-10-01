@@ -37,8 +37,26 @@ DROP COLUMN `id_livro`;
 select * from categorias;
 insert into categorias (nome) values ('HQ');
 
-select * from autores
+select * from autores;
+/*inserindo info na coluna*/
 insert into autores 
-(nome,idade) values ('Mauricio de Sousa','88'),('Jeff Kinney','53'),('Crepusculo','Stephenie Meyer')
+(nome,idade) values (' William P. Young','69');
 
-alter table autores
+/*atualizar informacoes*/
+update autores
+set idade = 50
+where id = 3;
+
+/*add coluna livros*/
+alter table livros
+add column id_autor int not null
+after nome;
+
+select * from livros;
+insert into livros 
+(nome,id_autor,preco, id_categoria) values ('Crepúsculo',3,20.99,3),('Diário de um Banana',2,20.99,4),('Turma da Mônica Jovem',1,20.99,5),('A Cabana',4,20.99,1);
+
+/*juntar as 3 tabelas*/
+select l.id, l.nome, l.preco, c.nome as categoria, a.nome as autor from livros as l
+inner join categorias as c on c.id = l.id_categoria
+inner join autores as a on a.id = l.id_autor
