@@ -80,10 +80,6 @@ footer {
 }
 
 @media (max-width: 690px ) {
-    body {
-        background-color: red;
-    }
-    
     main {
         width: 96vw 
     }

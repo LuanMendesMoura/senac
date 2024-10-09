@@ -1,4 +1,5 @@
-/*CRIACAO DE DATA BASE*/
+/*CRIACAO DA DATA BASE*/
+drop database delivery;
 create database delivery;
 use delivery;
 
@@ -29,16 +30,14 @@ create table lojas (
 
 /*INSERINDO INFORMACOES NAS TABELAS*/
 insert into produtos (nome,id_categoria,preco,id_loja)
-values ('Copo de Açai',2,7.99,2);
-values ('Hamburguer Amigão',1,19.99,1);
+values ('Hamburguer Amigão',1,19.99,1),('Copo de Açai',2,7.99,2);
 
 insert into categorias (nome)
-values ('Doce')
-values ('Fast Food');
+values ('Fast Food'),('Doce');
 
 insert into lojas (nome,descricao,cpf)
-values ('Açaiteria','Melhor açai de São Paulo','299.999.999-99');
-values ('Amigao','Delivery de fast food para todos de SP','199.999.999-99');
+values ('Amigao','Delivery de fast food para todos de SP','199.999.999-99'),
+('Açaiteria','Melhor açai de São Paulo','299.999.999-99');
 
 /*----------------------------------------------------------------------*/
 
@@ -51,15 +50,8 @@ select * from lojas;
 
 /*----------------------------------------------------------------------*/
 
-/*INNER JOIN DE TODAS AS TABELAS E SUAS COLUNAS*/
-select * from produtos
-inner join categorias
-inner join lojas;
-
-/*----------------------------------------------------------------------*/
-
 /*INNER JOIN * (GERAL)*/
-select p.id, p.nome, c.nome, p.preco, l.nome from produtos as p
+select p.id, p.nome as produto, c.nome as categoria, p.preco, l.nome as loja from produtos as p
 inner join categorias as c on c.id = p.id_categoria
 inner join lojas as l on l.id = p.id_loja;
 
@@ -75,14 +67,14 @@ where c.nome = 'Fast Food';
 
 /*ADICIONAR COLUNAS NA TABELA*/
 alter table produtos
-add column descricao float not null
+add column validade date not null
 after id_categoria;
 
 /*-----------------------------------------------------------------------*/
 
 /*DELETAR COLUNA DA TABELA*/
 alter table produtos 
-drop column descricao;
+drop column validade;
 
 /*-----------------------------------------------------------------------*/
 
@@ -103,3 +95,19 @@ alter table produtos
 change column nome nome_produto varchar(50) not null;
 
 /*-----------------------------------------------------------------------*/
+
+/*Este comando remove todos os registros da tabela especificada, reiniciando qualquer auto-incremento associado.*/
+use delivery;
+truncate table nome_da_tabela;
+
+/*Selecione todos os valores diferentes da coluna na tabela.*/
+use delivery;
+select distinct preco from produtos;
+
+/*ordem alfabética*/
+select * from lojas
+order by nome;
+
+/*ordem alfabética inversa*/
+select * from lojas
+order by nome desc

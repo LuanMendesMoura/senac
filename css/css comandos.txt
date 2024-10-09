@@ -1,0 +1,42 @@
+CSS 
+
+justify-content: <!-- alinha horizontalmente -->
+flex-start: Os itens são alinhados ao lado esquerdo do contêiner.
+flex-end: Os itens são alinhados ao lado direito do contêiner.
+center: Os itens são alinhados no centro do contêiner.
+space-between: Os itens são exibidos com espaçamento igual entre eles.
+space-around: Os itens são exibidos com espaçamento igual ao redor deles.
+
+align-items: <!-- alinha verticalmente -->
+flex-start: Os itens são alinhados ao topo do contêiner.
+flex-end: Os itens se alinham ao fundo do contêiner.
+center: Os itens são alinhados no centro vertical do contêiner.
+baseline: Os itens são exibidos na linha de base do contêiner.
+stretch: Os itens são esticados para caber no recipiente.
+
+flex-direction: <!-- direção dos itens dentro do conteiner -->
+row: Os itens são colocados na mesma direção do texto.
+row-reverse: Os itens são colocados opostos à direção do texto.
+column: Os itens são colocados de cima para baixo.
+column-reverse: Os itens são colocados de baixo para cima.
+
+flex-wrap:
+nowrap:Cada item cabe em uma única linha.
+wrap: Os itens são agrupados em linhas adicionais.
+wrap-reverse: Os itens são quebrados em linhas adicionais ao contrário.
+
+flex-flow: <!-- combina flex-direction e flex-wrap -->
+
+order: <!-- propriedade individual para cada item podendo ser uma valor 
+inteiro negativo ou positivo -->
+
+align-self: 
+align-items:
+
+align-content: 
+flex-start: As linhas são compactadas na parte superior do contêiner.
+flex-end: As linhas são embaladas no fundo do contêiner.
+center: As linhas são compactadas no centro vertical do contêiner.
+space-between: As linhas são exibidas com espaçamento igual entre elas.
+space-around: As linhas são exibidas com espaçamento igual ao redor delas.
+stretch: As linhas são esticadas para caber no contêiner. 
