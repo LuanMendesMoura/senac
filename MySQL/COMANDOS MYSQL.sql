@@ -100,13 +100,19 @@ change column nome nome_produto varchar(50) not null;
 use delivery;
 truncate table nome_da_tabela;
 
+/*-----------------------------------------------------------------------*/
+
 /*Selecione todos os valores diferentes da coluna na tabela.*/
 use delivery;
 select distinct preco from produtos;
 
+/*-----------------------------------------------------------------------*/
+
 /*ordem alfabética*/
 select * from lojas
 order by nome;
+
+/*-----------------------------------------------------------------------*/
 
 /*ordem alfabética inversa*/
 select * from lojas

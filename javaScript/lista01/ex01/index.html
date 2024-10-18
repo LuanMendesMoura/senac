@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex01</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section>
+            <form class="form" action="">
+
+                <div class="form-headear">
+                    <h4>Adição de dois números</h4>
+                </div>
+
+                <div id="ex01/ex02">
+                    <label for="num01">Num1</label>
+                    <input type="number" step="0.1" name="num01">
+
+                    <label for="num02">Num2</label>
+                    <input type="number" step="0.1" name="num02">
+
+                <div class="button">
+                    <button type="button" onclick="somar()">SOMAR</button>
+                    <button type="button" onclick="subtrair()">SUBTRAIR</button>
+                </div>
+
+            </form>
+
+            <p class="somaInput">
+            </p>
+        </section>
+    </main>
+
+    <script>
+        function somar() {
+            const input01 = parseInt(document.querySelector('#ex01/ex02').querySelector('[name="num01"]').value) 
+
+            const input02 = parseInt(document.querySelector('#ex01/ex02').querySelector('[name="num02"]').value)
+
+            const soma = input01 + input02
+
+            const resultado = document.querySelector('.somaInput')
+
+            resultado.innerHTML = soma
+        }
+
+        function subtrair() {
+            const input01 = document
+                .querySelector('#ex01/ex02')
+                .querySelector('[name="num01"]')
+
+            const input02 = document
+                .querySelector('#ex01/ex02')
+                .querySelector('[name="num02"]')
+
+            const n1 = Number(input01.value)
+            const n2 = Number(input02.value)
+
+            const resultadoInput = document
+                .querySelector('#ex01/ex02')
+                .querySelector('[name="result"]')
+            resultadoInput.value = n1-n2
+        }
+    </script>
+</body>
+</html>
