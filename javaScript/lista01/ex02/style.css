@@ -1,0 +1,49 @@
+@import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    font-weight: bold
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    margin: 60px;
+    color: orange;
+}
+
+section {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.form .form-headear {
+    padding-top: 30px;
+    text-align: center;
+}
+
+span {
+    font-size: larger;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.form .form-input {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+input {
+    width: 70px;
+}
+
+.form .form-button {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+} 
+

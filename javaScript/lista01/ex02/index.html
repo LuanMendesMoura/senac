@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex02</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section>
+            
+            <form class="form" action="">
+                <div class="form-headear">
+                    <h4>Calculadora</h4>
+                </div>
+                
+                <span></span>
+                
+                <div class="form-input">
+                    <input id="n1" type="number" step="1" name="input01" placeholder="Número*">
+
+                    <input id="n2" type="number" step="1" name="input02" placeholder="Número*">
+                </div>
+
+                <div class="form-button">
+                    <button type="button" onclick="adicao()">+</button>
+
+                    <button type="button" onclick="subtracao()">–</button>
+
+                    <button type="button" onclick="multiplicacao()">×</button>
+
+                    <button type="button" onclick="divisao()">÷</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const n1 = document.querySelector('#n1')
+        const n2 = document.querySelector('#n2')
+        const resultado = document.querySelector('span')
+
+        function adicao() {
+            resultado.innerHTML = parseInt(n1.value) + parseInt(n2.value)
+        }
+
+        function subtracao() {
+            resultado.innerHTML = parseInt(n1.value) - parseInt(n2.value)
+        }
+
+        function multiplicacao() {
+            resultado.innerHTML = parseInt(n1.value) * parseInt(n2.value)
+        }
+
+        function divisao() {
+            resultado.innerHTML = parseInt(n1.value) / parseInt(n2.value)
+        }
+    </script> 
+</body>
+</html>
