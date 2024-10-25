@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex02 - Luan Mendes Moura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section>
+            
+            <form class="form" action="">
+                <span></span>
+                <br><br>
+                <div class="form-input">
+                    <input id="n1" type="number" step="1" name="input01" placeholder="Número*">
+                </div>
+                <br>
+                <div class="form-button">
+                    <button type="button" onclick="condicao()">Enviar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const n1 = parseInt(document.querySelector('.form-input').querySelector('input[name="input01"]').value) 
+        const resultado = document.querySelector('span')
+        
+        function condicao() {
+            if (n1 >= 0) {
+               resultado.innerHTML = parseInt(n1.value) ** 0.5
+            } else {
+                resultado.innerHTML = parseInt(n1.value) ** 2
+            }
+        }
+    </script> 
+</body>
+</html>
