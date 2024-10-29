@@ -100,6 +100,9 @@ left join vendas as v
 on v.id_produto = p.id
 where v.id_produto is null;
 
+select * from produtos
+where id not in (select id_produto from vendas);
+
 /*-------------------------EXERCICIO 12-------------------------*/
 select v.data_venda, c.nome as clientes, v.valor_total from vendas as v
 inner join clientes as c
@@ -110,11 +113,48 @@ select sum(estoque) 'estoque total'
 from produtos;
 
 /*-------------------------EXERCICIO 14-------------------------*/
-select c.nome, v.valor_total from vendas as v
+select c.nome, sum(v.valor_total) as total from vendas as v
 inner join clientes as c
 on c.id = v.id_cliente
-order by v.valor_total desc
+group by c.nome
+order by total desc
 limit 1;
 
 /*-------------------------EXERCICIO 15-------------------------*/
-update clientes set cidade = 'Rio de Janeiro' where id = 10
+update clientes set cidade = 'Rio de Janeiro' where id = 10;
+
+/*-------------------------EXERCICIO 16-------------------------*/
+/*FIltrar e ordenar vendas por data*/
+select * from vendas
+order by data_venda;
+
+/*-------------------------EXERCICIO 17-------------------------*/
+/*Filtar e ordenar produtos por nome*/
+select * from produtos
+order by nome;
+
+/*-------------------------EXERCICIO 18-------------------------*/
+/*Filtrar e ordenas vendas por id e usar limit*/
+select * from vendas
+group by id_cliente
+limit 2;
+
+/*-------------------------EXERCICIO 19-------------------------*/
+/*Filtro de vendas mostrando a qtd total de vendas no dia*/
+select v.data_venda, sum(v.valor_total) as total from vendas as v
+inner join clientes as c
+on c.id = v.id_cliente
+group by v.data_venda
+order by total desc 
+limit 1;
+
+/*-------------------------EXERCICIO 20-------------------------*/
+select c.nome, v.quantidade from vendas as v
+inner join clientes as c
+on c.id = v.id_cliente
+order by quantidade desc 
+limit 1;
+
+select * from produtos
+where estoque < 10
+order by estoque;
