@@ -19,11 +19,15 @@ def buscar_todos(tabela):
     try:
         conexao = conexao_banco()
         cursor = conexao.cursor()
-        query = 'SELECT * FROM {}'.format(tabela)
+        query = 'SELECT id, nome, preco FROM {}'.format(tabela)
         cursor.execute(query)
         registros = cursor.fetchall()
 
-        print(registros)
+        # print(registros)
+
+        # nomes = "\n".join(registro[0] for registro in registros)
+
+        return registros
 
     except:
         print("Não foi possível selecionar todos da tabela {}".format(tabela))
