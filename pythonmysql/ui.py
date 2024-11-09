@@ -28,8 +28,12 @@ def listagem_livros():
     btn_lista_produtos = tk.Button(nova_janela, text="Listar Produtos", command=lambda:carregar_produtos())
     btn_lista_produtos.pack(pady=10)
 
+
     def carregar_produtos():
         registros = db.buscar_todos("livros")
+
+        for item in tabela_produtos.get_children():
+            tabela_produtos.delete(item)
 
         for registro in registros:
             tabela_produtos.insert("", tk.END, values=registro)
