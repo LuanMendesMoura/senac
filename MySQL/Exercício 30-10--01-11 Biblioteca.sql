@@ -137,3 +137,4 @@ on l.id = c.id_livro
 inner join clientes as cl
 on cl.cpf = c.cpf_cliente;
 
+select * from livros where nome LIKE '%turma%';

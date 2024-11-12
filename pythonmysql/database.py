@@ -53,3 +53,35 @@ def buscar_livro_nome(nome, tree):
 
     finally:
         cursor.close()
+
+def cadastrar_livro(nome,preco,id_categoria,id_autor):
+    try:
+        conexao = conexao_banco()
+        cursor = conexao.cursor()
+
+        query = "INSERT INTO livros (nome, preco, id_categoria, id_autor) VALUES (%s, %s, %s, %s)"
+
+        cursor.execute(query,(nome,preco,id_categoria,id_autor))
+
+        conexao.commit()
+    except:
+        print("Não consegui inserir o registro!")
+    
+    finally:
+        cursor.close()
+
+def delete_livro(id):
+    try:
+        conexao = conexao_banco()
+        cursor = conexao.cursor()
+
+        query = "DELETE FROM livros WHERE id = (%s)"
+
+        cursor.execute(query,(id))
+
+        conexao.commit()
+    except:
+        print("Não consegui deletar o registro!")
+
+    finally:
+        cursor.close()
