@@ -1,9 +1,9 @@
 import tkinter as tk
 import database as db
-from tkinter import ttk
+from tkinter import ttk, messagebox
+from PIL import Image, ImageTk
 
-
-def listagem_livros():
+def janela_lista_livros():
     nova_janela = tk.Toplevel()
     nova_janela.title("Listagem de livros")
     nova_janela.geometry("600x600")
@@ -38,7 +38,42 @@ def listagem_livros():
         for registro in registros:
             tabela_produtos.insert("", tk.END, values=registro)
 
+    def delete_registro():
+        selected_item = tabela_produtos.selection()
+
+        if selected_item:
+            item = tabela_produtos.item(selected_item)
+
+            livro_id = item["values"][0]
+
+            db.delete_livro(livro_id)
+
+    # icon_delete_img = Image.open("assets/delete01.png").resize((16, 16))
+    # icon = ImageTk.PhotoImage(icon_delete_img)
+
+    btn_delete = tk.Button(nova_janela, text="Deletar", command=lambda:delete_registro())
+    btn_delete.pack(pady=10)
+
 def janela_cadastra_livro():
+
+    # Método que limpa input
+    def limpa_campos():
+        input_nome.delete(0, tk.END)
+        input_preco.delete(0, tk.END)
+        input_categoria.delete(0, tk.END)
+        input_autor.delete(0, tk.END)
+
+    # Método que salva produto nos banco e limpa os inputs
+    def salva_livro():
+        db.cadastrar_livro(
+            input_nome.get(), 
+            input_preco.get(), 
+            input_categoria.get(), 
+            input_autor.get()
+        )
+
+        limpa_campos()
+
     nova_janela = tk.Toplevel()
     nova_janela.title("Cadastro de Livros")
     nova_janela.geometry("400x600")
@@ -72,12 +107,8 @@ def janela_cadastra_livro():
     input_autor.pack(pady=5)
 
     # Botão que vai cadastrar o livro no DB
-    btn_cadastra_livro = tk.Button(nova_janela, text="Cadastrar", command=lambda:db.cadastrar_livro(
-        input_nome.get(), 
-        input_preco.get(), 
-        input_categoria.get(), 
-        input_autor.get()
-        ))
+    btn_cadastra_livro = tk.Button(nova_janela, text="Cadastrar", command=lambda:salva_livro())
+    
     btn_cadastra_livro.pack(pady=10)
 
 def janela_deletar_livro():
@@ -95,19 +126,15 @@ def janela_deletar_livro():
     btn_detele_livro = tk.Button(nova_janela, text="Deletar", command=lambda:db.delete_livro(input_idLivro.get()))
     btn_detele_livro.pack(pady=10)
 
-
 def tela_principal():
     root = tk.Tk()
     root.title("BIblioteca")
     root.geometry("600x600")
 
-    btn_listagem_livros = tk.Button(root, text="Abrir lista de livros", command=listagem_livros)
+    btn_listagem_livros = tk.Button(root, text="Abrir Lista De Livros", command=janela_lista_livros)
     btn_listagem_livros.pack(pady=10)
 
     btn_janela_cadastra_livro = tk.Button(root, text="Cadastrar Livro", command=janela_cadastra_livro)
     btn_janela_cadastra_livro.pack(pady=10)
-
-    btn_janela_deletar_livro = tk.Button(root, text="Deletar Livro", command=janela_deletar_livro)
-    btn_janela_deletar_livro.pack(pady=10)
 
     root.mainloop()

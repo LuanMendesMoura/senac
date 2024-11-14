@@ -1,5 +1,13 @@
 import mysql.connector
 import tkinter as tk
+from tkinter import ttk, messagebox
+import ui
+
+# class Livro():
+#     nome:str
+#     preco:float
+#     id_categoria:int
+#     id_autor:int
 
 def conexao_banco():
     try:
@@ -64,24 +72,52 @@ def cadastrar_livro(nome,preco,id_categoria,id_autor):
         cursor.execute(query,(nome,preco,id_categoria,id_autor))
 
         conexao.commit()
+
+        messagebox.showinfo("SUCESSO", "Livro cadastrado com sucesso!")
+
     except:
-        print("Não consegui inserir o registro!")
+        messagebox.showerror("ERRO", "Não foi possível inserir o livro")
     
     finally:
         cursor.close()
 
-def delete_livro(id):
+def delete_livro(livro_id):
     try:
         conexao = conexao_banco()
         cursor = conexao.cursor()
 
-        query = "DELETE FROM livros WHERE id = (%s)"
+        query = "DELETE FROM livros WHERE id = {}".format(livro_id)
 
-        cursor.execute(query,(id))
+        cursor.execute(query)
 
         conexao.commit()
+
+        messagebox.showinfo("SUCESSO", "Livro deletado com sucesso!")
+
     except:
-        print("Não consegui deletar o registro!")
+        messagebox.showerror("ERRO", "Não foi possível deletar o livro")
 
     finally:
         cursor.close()
+
+def atualizar_livro(livro_id,nome,preco,id_categoria,id_autor):
+    try:
+        conexao = conexao_banco()
+        cursor = conexao.cursor()
+
+        query = """UPDATE livros 
+        SET nome = %s, preco = %s, id_categoria = %s, id_autor = %s
+        WHERE id = %s"""
+
+        cursor.execute(query, (nome,preco,id_categoria,id_autor,livro_id))
+
+        conexao.commit()
+
+        messagebox.showinfo("SUCESSO", "Livro atualizado com sucesso!")
+
+    except:
+        messagebox.showerror("ERRO", "Não foi possível atualizar o livro")
+
+    finally:
+        cursor.close()
+        

@@ -31,3 +31,4 @@ insert into filme (nome, ano, descricao) values ('As Tartarugas Ninja: Caos Muta
 insert into filme (nome, ano, descricao) values ('Putz! A Coisa Tá Feia', 2006,'Ratso, um roedor esfomeado, convence a todos de que ele é o pai do patinho feio. Ratso e o patinho mais feio do mundo partem para uma arriscada jornada com inimigos perigosos, problemas de adolescentes e sentimentos paternos inesperados esperando-os pela frente.');
 
 select * from filme
+
