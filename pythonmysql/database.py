@@ -62,6 +62,28 @@ def buscar_livro_nome(nome, tree):
     finally:
         cursor.close()
 
+def buscar_produto_id(livro_id):
+    try:
+        conexao = conexao_banco()
+        cursor = conexao.cursor()
+        query = "SELECT * FROM livros WHERE id = {}".format(livro_id)
+        cursor.execute(query)
+        registro = cursor.fetchone()
+
+        if registro:
+            return {
+                "id": registro[0],
+                "nome": registro[1],
+                "preco": registro[2],
+                "id_categoria": registro[3],
+                "id_autor": registro[4],
+            }
+
+        messagebox.showinfo("SUCESSO", "Livro editado com sucesso!")
+
+    except:
+        messagebox.showerror("ERRO", "Não foi possível editar o livro")
+
 def cadastrar_livro(nome,preco,id_categoria,id_autor):
     try:
         conexao = conexao_banco()
@@ -100,7 +122,7 @@ def delete_livro(livro_id):
     finally:
         cursor.close()
 
-def atualizar_livro(livro_id,nome,preco,id_categoria,id_autor):
+def atualizar_livro(livro_id,nome,preco,id_categoria,id_autor, nova_janela):
     try:
         conexao = conexao_banco()
         cursor = conexao.cursor()
@@ -112,6 +134,8 @@ def atualizar_livro(livro_id,nome,preco,id_categoria,id_autor):
         cursor.execute(query, (nome,preco,id_categoria,id_autor,livro_id))
 
         conexao.commit()
+
+        nova_janela.destroy()
 
         messagebox.showinfo("SUCESSO", "Livro atualizado com sucesso!")
 

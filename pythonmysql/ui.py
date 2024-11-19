@@ -15,21 +15,27 @@ def janela_lista_livros():
     tabela_produtos = ttk.Treeview(nova_janela, columns=colunas, show="headings")
     tabela_produtos.pack(fill="both")
 
-    #CONFIGURA O CABEÇALHO DA COLUNA
+    # CONFIGURA O CABEÇALHO DA COLUNA
     tabela_produtos.heading("ID", text="ID")
     tabela_produtos.heading("Nome", text="Nome")
     tabela_produtos.heading("Preço", text="Preço")
 
-    #ESPECIFICAR TAMANHO DA COLUNA
+    # ESPECIFICAR TAMANHO DA COLUNA
     tabela_produtos.column("ID", width=50)
     tabela_produtos.column("Nome", width=150)
     tabela_produtos.column("Preço", width=100)
 
-    btn_lista_produtos = tk.Button(nova_janela, text="Listar Produtos", command=lambda:carregar_produtos())
-    btn_lista_produtos.pack(pady=10)
+    # BOTÕES
+    btn_listar_livros = tk.Button(nova_janela, text="Listar Produtos", command=lambda:listar_registros())
+    btn_listar_livros.pack(pady=10)
 
+    btn_editar_livro = tk.Button(nova_janela, text="Editar", command=lambda:editar_registro())
+    btn_editar_livro.pack(pady=10)
 
-    def carregar_produtos():
+    btn_delete_livro = tk.Button(nova_janela, text="Deletar", command=lambda:delete_registro())
+    btn_delete_livro.pack(pady=10)
+
+    def listar_registros():
         registros = db.buscar_todos("livros")
 
         for item in tabela_produtos.get_children():
@@ -48,13 +54,24 @@ def janela_lista_livros():
 
             db.delete_livro(livro_id)
 
-    # icon_delete_img = Image.open("assets/delete01.png").resize((16, 16))
-    # icon = ImageTk.PhotoImage(icon_delete_img)
+            nova_janela.destroy()
 
-    btn_delete = tk.Button(nova_janela, text="Deletar", command=lambda:delete_registro())
-    btn_delete.pack(pady=10)
+    def editar_registro():
+        selected_item = tabela_produtos.selection()
+
+        if selected_item:
+            item = tabela_produtos.item(selected_item)
+
+            livro_id = item["values"][0]
+
+            janela_editar_registro(livro_id)
+
+            nova_janela.destroy()
 
 def janela_cadastra_livro():
+    nova_janela = tk.Toplevel()
+    nova_janela.title("Cadastro de Livros")
+    nova_janela.geometry("400x600")
 
     # Método que limpa input
     def limpa_campos():
@@ -74,13 +91,8 @@ def janela_cadastra_livro():
 
         limpa_campos()
 
-    nova_janela = tk.Toplevel()
-    nova_janela.title("Cadastro de Livros")
-    nova_janela.geometry("400x600")
-
     # Label e Input do Nome
-    label_nome = tk.Label(nova_janela, text="Nome")
-    label_nome.pack(pady=0)
+    tk.Label(nova_janela, text="Nome").pack(pady=0)
 
     input_nome = tk.Entry(nova_janela)
     input_nome.pack(pady=5)
@@ -111,22 +123,50 @@ def janela_cadastra_livro():
     
     btn_cadastra_livro.pack(pady=10)
 
-def janela_deletar_livro():
+def janela_editar_registro(livro_id):
+    lancamentos = db.buscar_produto_id(livro_id)
+
     nova_janela = tk.Toplevel()
-    nova_janela.title("Deletar Livro")
-    nova_janela.geometry("400x600")
+    nova_janela.title("Editar Livro")
+    nova_janela.geometry("600x600")
 
-    # Label e Input do DELETE IdProduto
-    label_idLivro = tk.Label(nova_janela, text="ID Livro")
-    label_idLivro.pack(pady=0)
+    tk.Label(nova_janela, text="ID DO LIVRO").pack(pady=10)
+    entry_id = tk.Entry(nova_janela)
+    entry_id.insert(0, str(livro_id))
+    entry_id.config(state="disabled")
+    entry_id.pack(pady=10)
 
-    input_idLivro = tk.Entry(nova_janela)
-    input_idLivro.pack(pady=5)
+    tk.Label(nova_janela, text="Nome").pack(pady=10)
+    entry_nome = tk.Entry(nova_janela)
+    entry_nome.insert(0, str(lancamentos.get('nome', '')))
+    entry_nome.pack(pady=10)
 
-    btn_detele_livro = tk.Button(nova_janela, text="Deletar", command=lambda:db.delete_livro(input_idLivro.get()))
-    btn_detele_livro.pack(pady=10)
+    tk.Label(nova_janela, text="Preço").pack(pady=10)
+    entry_preco = tk.Entry(nova_janela)
+    entry_preco.insert(0, str(lancamentos.get('preco', '')))
+    entry_preco.pack(pady=10)
+ 
+    tk.Label(nova_janela, text="ID Categoria").pack(pady=10)
+    entry_idCategoria = tk.Entry(nova_janela)
+    entry_idCategoria.insert(0, str(lancamentos.get('id_categoria', '')))
+    entry_idCategoria.pack(pady=10)
 
+    tk.Label(nova_janela, text="ID Autor").pack(pady=10)
+    entry_idAutor = tk.Entry(nova_janela)
+    entry_idAutor.insert(0, str(lancamentos.get('id_autor', '')))
+    entry_idAutor.pack(pady=10)
+
+    btn_salvar = tk.Button(nova_janela, text="Salvar", command=lambda:db.atualizar_livro(
+        livro_id, entry_nome.get(), 
+        entry_preco.get(), 
+        entry_idCategoria.get(), 
+        entry_idAutor.get(),
+        nova_janela
+        ))
+    btn_salvar.pack(pady=10)
+    
 def tela_principal():
+
     root = tk.Tk()
     root.title("BIblioteca")
     root.geometry("600x600")
@@ -138,3 +178,4 @@ def tela_principal():
     btn_janela_cadastra_livro.pack(pady=10)
 
     root.mainloop()
+
