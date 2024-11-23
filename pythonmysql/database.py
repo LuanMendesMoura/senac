@@ -43,7 +43,7 @@ def buscar_todos(tabela):
     finally:
         cursor.close()
 
-def buscar_livro_nome(nome, tree):
+def buscar_livro_nome(nome):
     try:
         conexao = conexao_banco()
         cursor = conexao.cursor()
@@ -51,10 +51,14 @@ def buscar_livro_nome(nome, tree):
         cursor.execute(query)
         registros = cursor.fetchall()
 
-        for registro in registros:
-            tree.insert("", tk.END, values=registro)
+        # for registro in registros:
+        #     tree.insert("", tk.END, values=registro)
 
-        return registro
+        resposta = []
+        for row in registros:
+            resposta = [{"id":row[0], "nome":row[1], "preco":row[2]}]
+
+        return resposta
     
     except:
         print("Não encontrei esse registro")

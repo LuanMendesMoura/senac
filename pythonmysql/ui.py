@@ -8,9 +8,32 @@ def janela_lista_livros():
     nova_janela.title("Listagem de livros")
     nova_janela.geometry("600x600")
 
+    # TITULO DA MINHA JANELA
     label_titulo = tk.Label(nova_janela, text="Listagem de livros")
     label_titulo.pack(pady=10)
 
+    def aplicar_filtro():
+        for item in tabela_produtos.get_children():
+            tabela_produtos.delete(item)
+
+        registros_filtro = db.buscar_livro_nome(entry_nome.get())
+
+        for registro in registros_filtro:
+            tabela_produtos.insert("", "end", values=(
+                registro.get("id", ""),
+                registro.get("nome", ""),
+                registro.get("preco", ""),
+            ))
+
+    # LABEL PARA PROCURAR LIVRO
+    tk.Label(nova_janela, text="Procurar").pack(pady=10)
+    # INPUT - CAIXA DE PERGUNTA
+    entry_nome = tk.Entry(nova_janela, width=50)
+    entry_nome.pack(pady=10)
+    # BTN PARA PROCURAR
+    btn_filtro = tk.Button(nova_janela, text="Filtrar", command=lambda:aplicar_filtro())
+    btn_filtro.pack(pady=10)
+    
     colunas = ("ID", "Nome", "Preço")
     tabela_produtos = ttk.Treeview(nova_janela, columns=colunas, show="headings")
     tabela_produtos.pack(fill="both")
