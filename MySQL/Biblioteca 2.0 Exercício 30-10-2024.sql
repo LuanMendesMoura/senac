@@ -138,10 +138,8 @@ inner join clientes as cl
 on cl.cpf = c.cpf_cliente;
 
 select * from livros where nome LIKE '%turma%';
+ 
 
-SET FOREIGN_KEY_CHECKS=0;
-
-delete from livros where id = ;
 
 
  

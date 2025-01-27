@@ -1,0 +1,21 @@
+@import url('reset.css');
+
+:root{
+    --cor-roxa-degrade: linear-gradient(45deg,#3E00A3,#DA70FF);
+    --cor-input: #FFFFFF;
+    --cor-texto-input: #B6B6B6;
+    --cor-texto-padrao: #000000;
+    --cor-icone: #8B1CD3;    
+}
+
+.ongs-detaque {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ongs-detaque .ong {
+    display: flex;
+    flex-direction: row;
+}
+
+

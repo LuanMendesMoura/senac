@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('reset.css');
+
+:root {
+    --cor-fundo: white;
+    --cor-texto: #B17457;
+    --cor-fundo-card: #4A4947 ;
+    font-size: 14px;
+    --cor-roxa-degrade: linear-gradient(45deg,#3E00A3,#DA70FF);
+    --cor-input: #FFFFFF;
+    --cor-texto-input: #B6B6B6;
+    --cor-texto-padrao: #000000;
+    --cor-icone: #8B1CD3;    
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+main {
+    padding: 20px;
+}
+
+h2,h3,strong {
+    font-weight: bold;
+}
+
+h2 {
+    /* rem: unidade de medida relativa ao font-size do elemento raiz (html) */
+    font-size: 2rem;
+}
+
+h3 {
+    /* em: unidade de medida relativa ao font-size do elemento imediatamente pai */
+    font-size: 1.5em;
+}
+
+.produtos-lista {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+
+.produtos-lista .produto {
+    /*temporário*/
+    /* border: 1px solid black; */
+
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    width: 180px;
+    border-radius: 20px;
+    padding: 20px;
+    gap: 18px;
+    background: transparent;
+    transition: 0.5s;
+    
+}
+
+.produtos-lista .produto:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.produtos-lista .produto img {
+    width: 200px;
+    border-radius: 20px;
+    
+}
+
+.produtos-lista .produto span {
+    text-align: justify;
+}
+
+.produto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(to top, transparent 5%, black 100%);
+    mask-image: linear-gradient(to top, transparent 5%, black 100%);
+  }

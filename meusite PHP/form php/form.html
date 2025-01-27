@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Cadastro de Produtos</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main>
+        <section>
+            <form class="form" action="form.php" method="POST">
+                <div class="form-header">
+                    <h4>Cadastrar Produtos</h4>
+                </div>
+
+                <div class="form-content">
+                    <div class="form-input required">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" placeholder="Nome*" required/>
+                    </div>
+
+                    <div class="form-input">
+                        <label for="descricao">Descrição</label>
+                        <input type="text" name="descricao" placeholder="Descrição*">
+                    </div>
+
+                    <div class="form-input required">
+                        <label for="preco">Preço</label>
+                        <input type="number" min="0" step="0.01" name="preco" placeholder="Preço*" required> 
+                    </div>
+                </div>
+
+                <div class="form-action">
+                    <button type="button" onclick="limparForm()">Limpar</button>
+                    <button>Enviar</button>
+                    <!-- <input class="submit" type="submit" value="Salvar"> -->
+                </div>
+            </form>
+            <ul class="produtos">
+
+            </ul>
+        </section>
+    </main>
+    <script>
+
+        
+        // console.log(`Olá mundo ${nome}`)
+        
+        
+        function limparForm(event) {
+            document.querySelector('input[name="nome"]').value = ''
+            document.querySelector('input[name="descricao"]').value=''
+            document.querySelector('input[name="preco"]').value = ''
+        }
+
+        function adicionarProduto() {
+            const nome = document.querySelector('input[name="nome"]').value
+
+            const descricao = document.querySelector('input[name="descricao"]').value
+
+            const preco = document.querySelector ('input[name="preco"]').value
+
+            const produto = `<li> <p>Nome: ${nome}</p> <p>Descrição: ${descricao}</p> <p>Preço: ${preco}</p> </li>`
+
+            const listaProdutos = document.querySelector('.produtos')
+            listaProdutos.innerHTML = listaProdutos.innerHTML + produto
+        }
+
+    </script>
+</body>
+</html>

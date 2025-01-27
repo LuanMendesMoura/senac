@@ -1,2 +1,5 @@
 mysql-connector-python /**/
 tk /*tkinter*/
+pyintaller
+
+python -m PyInstaller --windowed main.py

@@ -148,4 +148,4 @@ def atualizar_livro(livro_id,nome,preco,id_categoria,id_autor, nova_janela):
 
     finally:
         cursor.close()
-        
+            
