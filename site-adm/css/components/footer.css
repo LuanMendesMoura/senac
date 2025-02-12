@@ -2,9 +2,11 @@ footer {
     width: calc(100vw - 200px);
     height: 22px;
     background-color: yellow;
-    position: fixed;
+    /* position: fixed;
     right: 0;
-    bottom: 0;
+    bottom: 0; */
+    grid-column: 2;
+    grid-row: 3;
 }
 
 @media screen and (max-width: 490px) {

@@ -2,8 +2,10 @@ header {
     width: calc(100vw - 200px);
     height: 68px;
     background-color: red;
-    position: fixed;
-    right: 0;
+    /* position: fixed;
+    right: 0; */
+    grid-column: 2;
+    grid-row: 1;
 }
 
 @media screen and (max-width: 490px) {

@@ -3,3 +3,9 @@
 @import url(components/footer.css);
 @import url(components/navbar.css);
 @import url(components/sidebar.css);
+
+body {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 68px 1fr 22px;
+}

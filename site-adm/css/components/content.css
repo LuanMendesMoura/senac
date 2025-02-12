@@ -2,10 +2,12 @@ main {
     width: calc(100vw - 200px);
     height: calc(100vh - 68px - 22px);
     background-color: green;
-    position: fixed;
+    /* position: fixed;
     right: 0;
-    top: 68px;
+    top: 68px; */
     overflow: auto;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 @media screen and (max-width: 490px) {
