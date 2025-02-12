@@ -1,0 +1,18 @@
+main {
+    width: calc(100vw - 200px);
+    height: calc(100vh - 68px - 22px);
+    background-color: green;
+    position: fixed;
+    right: 0;
+    top: 68px;
+    overflow: auto;
+}
+
+@media screen and (max-width: 490px) {
+    main {
+        width: 100vw;
+        height: calc(100vh - 48px - 22px);
+        top: 48px;
+    }
+
+}

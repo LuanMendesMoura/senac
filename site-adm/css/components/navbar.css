@@ -1,0 +1,14 @@
+header {
+    width: calc(100vw - 200px);
+    height: 68px;
+    background-color: red;
+    position: fixed;
+    right: 0;
+}
+
+@media screen and (max-width: 490px) {
+    header {
+        width: 100vw;
+    }
+    
+}
